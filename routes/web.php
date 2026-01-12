@@ -18,9 +18,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
 
-    // Scan barcode route
-    Route::post('/scan', [SaleController::class, 'scan'])
-        ->name('scan');
+
 
     // User profile routes
     Route::get('/profile', [ProfileController::class, 'edit'])
@@ -42,11 +40,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/sales', [SaleController::class, 'index'])
     ->middleware(['auth'])
     ->name('sales.index');
-    });
-
 
     Route::get('/pos', [POSController::class, 'index'])
     ->name('pos');
+
+    });
+
+
+
 
 require __DIR__.'/auth.php';
 
