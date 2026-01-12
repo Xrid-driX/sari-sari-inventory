@@ -41,8 +41,8 @@ Route::middleware(['auth'])->group(function () {
     ->middleware(['auth'])
     ->name('sales.index');
 
-    Route::get('/pos', [POSController::class, 'index'])
-    ->name('pos');
+    Route::get('/pos', [POSController::class, 'index'])->name('pos');
+    Route::post('/pos/scan', [POSController::class, 'scan'])->name('pos.scan');
 
     });
 
