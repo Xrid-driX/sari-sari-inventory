@@ -37,14 +37,29 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/products/{product}', [InventoryController::class, 'update'])->name('products.update');
     Route::delete('/products/{product}', [InventoryController::class, 'destroy'])->name('products.destroy');
 
-    Route::get('/sales', [SaleController::class, 'index'])
-    ->middleware(['auth'])
-    ->name('sales.index');
+    // Route::get('/sales', [SaleController::class, 'index'])
+    // ->middleware(['auth'])
+    // ->name('sales.index');
+
+    Route::get('/pos', [POSController::class, 'index'])
+    ->name('pos');
+
 
     Route::get('/pos', [POSController::class, 'index'])->name('pos');
     Route::post('/pos/scan', [POSController::class, 'scan'])->name('pos.scan');
 
+    Route::post('/pos/checkout', [POSController::class, 'checkout'])
+    ->name('pos.checkout');
+
     });
+
+
+    Route::get('/pos', [POSController::class, 'index'])->name('pos');
+    Route::post('/pos/find', [POSController::class, 'findProduct'])->name('pos.find');
+    Route::post('/pos/deduct', [POSController::class, 'deductWithQuantity'])->name('pos.deduct');
+
+
+
 
 
 

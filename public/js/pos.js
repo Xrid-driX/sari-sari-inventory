@@ -11,137 +11,66 @@ document.addEventListener('DOMContentLoaded', () => {
     let sessionCart = [];
     let totalItemsCount = 0;
 
-    scanInput.addEventListener('keydown', (e) => {
-        if (e.key !== 'Enter') return;
+scanInput.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') return;
+    e.preventDefault();
 
-        e.preventDefault();
+    const barcode = scanInput.value.trim();
+    if (!barcode) return;
 
-        const barcode = scanInput.value.trim();
-        if (!barcode) return;
+    let quantity = parseInt(prompt('Enter quantity:', 1), 10);
+    if (!quantity || quantity <= 0) return;
 
-        // Using prompt as per your original logic
-        let quantity = prompt('Enter quantity:', 1);
-
-        if (quantity === null) {
-            scanInput.value = '';
-            return;
-        }
-
-        quantity = parseInt(quantity, 10);
-
-        if (isNaN(quantity) || quantity <= 0) {
-            alert('Please enter a valid quantity (number greater than 0).');
-            scanInput.value = '';
-            return;
-        }
-
-        processScan(barcode, quantity);
-        scanInput.value = '';
-    });
+    addToLocalCart(barcode, quantity);
+    scanInput.value = '';
+    scanInput.focus();
+});
 
     /**
      * Communicates with POSController@scan
      */
-    function processScan(barcode, quantity) {
-        if (scanMessage) {
-            scanMessage.textContent = "Processing...";
-            scanMessage.className = "mt-2 text-sm text-yellow-600 font-medium";
-        }
 
-        fetch('/pos/scan', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                // This token is required by Laravel for security
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            },
-            body: JSON.stringify({
-                barcode: barcode,
-                quantity: quantity
-            })
-        })
-        .then(async response => {
-            const data = await response.json();
+    function addToLocalCart(barcode, quantity) {
+    const existing = sessionCart.find(item => item.barcode === barcode);
 
-            if (!response.ok || !data.success) {
-                throw new Error(data.message || 'Server error occurred');
-            }
-            return data;
-        })
-        .then(data => {
-            // 1. Success Message
-            if (scanMessage) {
-                scanMessage.textContent = `Success: Added ${data.product.name}`;
-                scanMessage.className = "mt-2 text-sm text-green-600 font-bold";
-            }
-
-            // 2. Update Local State
-            const product = data.product;
-            updateLocalCart(product, quantity);
-
-            // 3. Update Total Count
-            totalItemsCount += quantity;
-            if (totalItemsSoldDisplay) {
-                totalItemsSoldDisplay.textContent = totalItemsCount;
-            }
-        })
-        .catch(error => {
-            console.error('Scan Error:', error);
-            if (scanMessage) {
-                scanMessage.textContent = error.message;
-                scanMessage.className = "mt-2 text-sm text-red-600 font-bold";
-            }
-            alert(error.message);
+    if (existing) {
+        existing.qty += quantity;
+    } else {
+        sessionCart.push({
+            barcode,
+            qty: quantity
         });
     }
 
-    /**
-     * Updates the UI Table and totals
-     */
-    function updateLocalCart(product, quantity) {
-        const price = parseFloat(product.price);
-        const lineTotal = price * quantity;
+    renderTable();
+}
 
-        // Check if item already in the visible table for this session
-        let existing = sessionCart.find(item => item.name === product.name);
 
-        if (existing) {
-            existing.qty += quantity;
-            existing.total += lineTotal;
-        } else {
-            sessionCart.push({
-                name: product.name,
-                qty: quantity,
-                price: price,
-                total: lineTotal
-            });
-        }
 
-        renderTable();
+function renderTable() {
+    if (!cartTable) return;
+
+    cartTable.innerHTML = "";
+
+    if (sessionCart.length === 0) {
+        cartTable.innerHTML = `
+            <tr>
+                <td colspan="2" class="text-center text-gray-500 py-4">
+                    No items scanned yet
+                </td>
+            </tr>
+        `;
+        return;
     }
 
-    function renderTable() {
-        if (!cartTable) return;
-
-        cartTable.innerHTML = "";
-        let grandTotal = 0;
-
-        sessionCart.forEach(item => {
-            grandTotal += item.total;
-            const row = `
-                <tr class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900 transition">
-                    <td class="py-3 px-4 font-medium text-gray-900 dark:text-white">${item.name}</td>
-                    <td class="py-3 px-4">${item.qty}</td>
-                    <td class="py-3 px-4">₱ ${item.price.toFixed(2)}</td>
-                    <td class="py-3 px-4 text-right font-bold">₱ ${item.total.toFixed(2)}</td>
-                </tr>
-            `;
-            cartTable.insertAdjacentHTML('beforeend', row);
-        });
-
-        if (cartTotalPriceDisplay) {
-            cartTotalPriceDisplay.textContent = grandTotal.toFixed(2);
-        }
-    }
+    sessionCart.forEach(item => {
+        const row = `
+            <tr class="border-b">
+                <td class="py-3 px-4 font-medium">${item.barcode}</td>
+                <td class="py-3 px-4">${item.qty}</td>
+            </tr>
+        `;
+        cartTable.insertAdjacentHTML('beforeend', row);
+    });
+}
 });
