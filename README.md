@@ -19,7 +19,7 @@ Running a Sari-Sari store often involves manual listing in notebooks, leading to
 ## 🛠️ Technology Stack
 
 * **Backend:** PHP, Laravel Framework
-* **Frontend:** Blade Templates, Bootstrap 5 / Tailwind CSS
+* **Frontend:** Blade Templates, / Tailwind CSS
 * **Database:** MySQL
 * **Scripting:** JavaScript
 
