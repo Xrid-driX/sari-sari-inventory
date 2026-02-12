@@ -38,7 +38,7 @@ Follow these steps to set up the project locally on your machine.
 
 1.  **Clone the Repository**
     ```bash
-    git clone [https://github.com/your-username/sari-sari-inventory.git](https://github.com/your-username/sari-sari-inventory.git)
+    git clone [https://github.com/Xrid-driX/sari-sari-inventory.git](https://github.com/Xrid-driX/sari-sari-inventory.git)
     cd sari-sari-inventory
     ```
 
