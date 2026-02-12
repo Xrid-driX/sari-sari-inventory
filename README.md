@@ -2,7 +2,7 @@
 
 A simple, efficient, and user-friendly web application designed to help Filipino Sari-Sari store owners manage their inventory, track categories, and monitor stock levels in real-time.
 
-![Laravel](https://img.shields.io/badge/Laravel-10.x%2B-red) ![Tailwind](https://img.shields.io/badge/Bootstrap-5-purple) ![License](https://img.shields.io/badge/License-MIT-blue)
+![Laravel](https://img.shields.io/badge/Laravel-10.x%2B-red) ![Tailwind](https://img.shields.io/badge/Tailwind-5-purple) ![License](https://img.shields.io/badge/License-MIT-blue)
 
 ## 📖 About The Project
 
