@@ -118,3 +118,5 @@ sari-sari-inventory/
 ```
 # 📄 License
 This project is open-source software licensed under the MIT license.
+
+Author: Xrid-Drix
