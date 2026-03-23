@@ -1,40 +1,60 @@
-# 🏪 Sari-Sari Store Web Inventory Management System
+<p align="center">
+  <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
+</p>
 
-A simple, efficient, and user-friendly web application designed to help Filipino Sari-Sari store owners manage their inventory, track categories, and monitor stock levels in real-time.
+<p align="center">
+  <img src="https://img.shields.io/badge/Laravel-11.x-red" alt="Laravel Version">
+  <img src="https://img.shields.io/badge/PHP-8.1%2B-blue" alt="PHP Version">
+  <img src="https://img.shields.io/badge/MySQL-5.7%2B-orange" alt="MySQL Version">
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
+  <img src="https://img.shields.io/badge/Focus-Offline--First-lightgrey" alt="Offline First">
+</p>
 
-![Laravel](https://img.shields.io/badge/Laravel-10.x%2B-red) ![Tailwind](https://img.shields.io/badge/Tailwind-5-purple) ![License](https://img.shields.io/badge/License-MIT-blue)
+# 🏪 Sari-Sari Inventory Management System
 
-## 📖 About The Project
+A comprehensive Point of Sale (POS) and Inventory Management System designed specifically for **sari-sari stores** (neighborhood retail shops). This system helps micro-entrepreneurs streamline daily operations, track stock levels, and monitor profitability through an easy-to-use interface.
 
-Running a Sari-Sari store often involves manual listing in notebooks, leading to errors and stockouts. This project digitizes that process, providing a centralized dashboard to track products and categories.
+> [!IMPORTANT]
+> **Offline-First System:** This project is designed to run entirely on a **local environment**. It is provided as source code for local deployment, ensuring your data stays on your machine without requiring a constant internet connection.
 
-### 🌟 Key Features
+---
 
-* **📦 Product Management:** Add, edit, and delete products with details like price, stock quantity, and description.
-* **📂 Categorization:** Organize items (e.g., Canned Goods, Beverages, Toiletries) for easier filtering.
-* **📉 Low Stock Indicators:** Visual cues when product stock runs low (optional).
-* **🔍 Search & Filter:** Quickly find items in the inventory.
-* **📱 Responsive Design:** optimized for desktops, tablets, and mobile phones.
+## ✨ Features
 
-## 🛠️ Technology Stack
+* **🔐 User Authentication** – Secure local login for store owners and staff.
+* **📊 Dashboard Analytics** – Real-time visual insights on sales and daily transactions.
+* **📦 Inventory Management** – Complete CRUD operations for products with automated stock tracking.
+* **🛒 Point of Sale (POS)** – Optimized interface for quick customer checkouts.
+* **🔄 Returns Processing** – Efficient handling of customer returns and inventory adjustments.
+* **📈 Sales Reporting** – Generate and view reports for daily, weekly, and monthly performance.
+* **⚠️ Low Stock Alerts** – Instant visual notifications when items need restocking.
 
-* **Backend:** PHP, Laravel Framework
-* **Frontend:** Blade Templates, / Tailwind CSS
+---
+
+## 📸 Screenshots
+
+| Login Page | Dashboard |
+|---|---|
+| ![Login Page](images/login.png) | ![Dashboard](images/dashboard.png) |
+
+| Inventory | POS System |
+|---|---|
+| ![Inventory Management](images/inventory.png) | ![Point of Sale](images/pos.png) |
+
+---
+
+## 🛠️ Built With
+
+* **Framework:** [Laravel 11](https://laravel.com)
 * **Database:** MySQL
-* **Scripting:** JavaScript
+* **Frontend:** Bootstrap 5 & jQuery
+* **Charts:** Chart.js
 
-## 🚀 Getting Started
+---
 
-Follow these steps to set up the project locally on your machine.
+## 🚀 Installation Guide (Local Setup)
 
-### Prerequisites
-
-* [PHP](https://www.php.net/) (Version 8.1 or higher)
-* [Composer](https://getcomposer.org/)
-* [Node.js & NPM](https://nodejs.org/)
-* [MySQL](https://www.mysql.com/) (or XAMPP/WAMP)
-
-### Installation Guide
+Since this is a local source-code project, follow these steps to get it running on your machine:
 
 1.  **Clone the Repository**
     ```bash
@@ -42,48 +62,59 @@ Follow these steps to set up the project locally on your machine.
     cd sari-sari-inventory
     ```
 
-2.  **Install PHP Dependencies**
+2.  **Install Dependencies**
     ```bash
     composer install
+    npm install && npm run build
     ```
 
-3.  **Install Frontend Dependencies**
-    ```bash
-    npm install
-    npm run build
-    ```
-
-4.  **Environment Configuration**
-    * Duplicate the example environment file:
+3.  **Environment Configuration**
+    * Copy the example env file:
         * **Windows:** `copy .env.example .env`
         * **Mac/Linux:** `cp .env.example .env`
-    * Open `.env` and configure your database settings:
+    * Configure your local MySQL settings in `.env`:
         ```env
-        DB_CONNECTION=mysql
-        DB_HOST=127.0.0.1
-        DB_PORT=3306
         DB_DATABASE=sari_sari_db
         DB_USERNAME=root
-        DB_PASSWORD=
+        DB_PASSWORD=your_password
         ```
 
-5.  **Generate App Key**
+4.  **Initialize Database**
     ```bash
     php artisan key:generate
-    ```
-
-6.  **Run Migrations & Seeders** (Set up the database)
-    ```bash
     php artisan migrate --seed
     ```
 
-7.  **Run the Application**
-    * Start the local server:
-        ```bash
-        php artisan serve
-        ```
+5.  **Run the Local Server**
+    ```bash
+    php artisan serve
+    ```
+    Access the app at: `http://127.0.0.1:8000`
 
-8.  **Access the App**
-    Open your browser and visit: `http://127.0.0.1:8000`
+**Default Credentials:**
+* **Email:** `test@user.com`
+* **Password:** `admin123`
+* Or Just click register on log in page
 
-## 📂 Project Structure
+---
+
+## 📁 Project Structure
+
+```text
+sari-sari-inventory/
+├── app/
+│   ├── Models/             # Database Logic
+│   ├── Http/Controllers/   # Route Handling
+│   └── Services/           # Business Logic
+├── database/
+│   ├── migrations/         # Table Schemas
+│   └── seeders/            # Initial Demo Data
+├── resources/
+│   ├── views/              # Blade Templates (UI)
+│   └── css/                # Stylesheets
+├── public/
+│   └── images/             # Static Assets & Screenshots
+└── routes/                 # Web Endpoints
+```
+# 📄 License
+This project is open-source software licensed under the MIT license.
