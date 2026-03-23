@@ -1,14 +1,26 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Laravel-11.x-red" alt="Laravel Version">
-  <img src="https://img.shields.io/badge/PHP-8.1%2B-blue" alt="PHP Version">
-  <img src="https://img.shields.io/badge/MySQL-5.7%2B-orange" alt="MySQL Version">
-  <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
-  <img src="https://img.shields.io/badge/Focus-Offline--First-lightgrey" alt="Offline First">
-</p>
+<div align="center">
+  
+  ![Laravel](https://img.shields.io/badge/Laravel-11.x-red)
+  ![PHP](https://img.shields.io/badge/PHP-8.1%2B-blue)
+  ![License](https://img.shields.io/badge/License-MIT-green)
+  ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)
+  
+  <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="300" alt="Laravel Logo">
+  
+  <h1>🏪 Sari-Sari Inventory Management System</h1>
+  
+  <p>A comprehensive Point of Sale (POS) and Inventory Management System designed specifically for sari-sari stores</p>
+  
+  <p>
+    <a href="#-screenshots">Screenshots</a> •
+    <a href="#-features">Features</a> •
+    <a href="#-installation">Installation</a> •
+    <a href="#-usage">Usage</a>
+  </p>
+  
+  <hr>
+  
+</div>
 
 # 🏪 Sari-Sari Inventory Management System
 
